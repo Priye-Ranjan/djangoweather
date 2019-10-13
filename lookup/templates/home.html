@@ -2,6 +2,26 @@
 
 {% block content %}
 
-<h1>Hello World</h1>
+<h1>Hello World!!</h1>
+<br/>
+
+{% if api %}
+	{% if api == "Error..." %}
+		Tehre is error...
+	{% else %}
+		<div class="jumbotron {{ category_color }}" >
+		  <h1 class="display-4">{{ api.0.Category.Name }}</h1>
+		  <p class="lead">Current  {{ api.0.LocalTimeZone }} {{ api.0.ReportingArea }} Air Quality:{{ api.0.AQI }} </p>
+		  
+		  {% if api.0.Category.Name == "Good" %}
+			<p>(0-50)Air quality is considered satisfactory, and air pollution poses little or no risk.</p>
+	      {% elif api.0.Category.Name == "Moderate" %}
+			<p>(51 - 100)Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.</p>
+	{% endif %}
+
+	{% endif %}
+	</div>
+
+{% endif %}
 
 {% endblock %}
